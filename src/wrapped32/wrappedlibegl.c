@@ -19,6 +19,7 @@
 #include "gltools.h"
 
 static const char* libeglName = "libEGL.so.1";
+#define ALTNAME "libEGL.so"
 #define LIBNAME libegl
 
 #include "generated/wrappedlibegltypes32.h"
