@@ -21,6 +21,7 @@
 #include "gtkclass.h"
 
 const char* gthread2Name = "libgthread-2.0.so.0";
+#define ALTNAME "libgthread-2.0.so"
 #define LIBNAME gthread2
 
 #define ADDED_FUNCTIONS() \

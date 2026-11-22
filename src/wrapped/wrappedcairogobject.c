@@ -14,6 +14,7 @@
 #include "x64emu.h"
 
 const char* cairogobjectName = "libcairo-gobject.so.2";
+#define ALTNAME "libcairo-gobject.so"
 #define LIBNAME cairogobject
 
 #include "wrappedlib_init.h"

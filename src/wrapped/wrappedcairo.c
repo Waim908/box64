@@ -20,6 +20,7 @@
 #include "myalign.h"
 
 const char* cairoName = "libcairo.so.2";
+#define ALTNAME "libcairo.so"
 #define LIBNAME cairo
 
 #include "generated/wrappedcairotypes.h"

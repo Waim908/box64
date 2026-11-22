@@ -18,6 +18,7 @@
 #include "emu/x64emu_private.h"
 
 const char* brotlidecName = "libbrotlidec.so.1";
+#define ALTNAME "libbrotlidec.so"
 #define LIBNAME brotlidec
 
 #define ADDED_FUNCTIONS()           \
