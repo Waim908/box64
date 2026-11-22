@@ -14,6 +14,7 @@
 #include "debug.h"
 
 const char* harfbuzzsubsetName = "libharfbuzz-subset.so.0";
+#define ALTNAME "libharfbuzz-subset.so"
 #define LIBNAME harfbuzzsubset
 
 #include "wrappedlib_init.h"

@@ -15,6 +15,7 @@
 #include "callback.h"
 
 const char* libharfbuzzName = "libharfbuzz.so.0";
+#define ALTNAME "libharfbuzz.so"
 #define LIBNAME libharfbuzz
 
 #include "generated/wrappedlibharfbuzztypes.h"
