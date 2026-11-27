@@ -5861,6 +5861,7 @@ wrappedlibdrmamdgpu:
 wrappedlibegl:
 - pFp:
   - eglGetProcAddress
+wrappedlibfluidsynth:
 wrappedlibform:
 wrappedlibformw:
 wrappedlibformw6:
