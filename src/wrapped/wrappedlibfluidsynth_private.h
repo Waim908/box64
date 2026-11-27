@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: MIT
+#if !(defined(GO) && defined(GOM) && defined(GO2) && defined(DATA))
+#error Meh...
+#endif
+
+GO(delete_fluid_audio_driver, vFp)
+GO(delete_fluid_settings, vFp)
+GO(delete_fluid_synth, vFp)
+GO(fluid_settings_setint, iFppi)
+GO(fluid_settings_setnum, iFppd)
+GO(fluid_settings_setstr, iFppp)
+GO(fluid_sfont_get_preset, pFpii)
+GO(fluid_synth_all_notes_off, iFpi)
+GO(fluid_synth_all_sounds_off, iFpi)
+GO(fluid_synth_cc, iFpiii)
+GO(fluid_synth_channel_pressure, iFpii)
+GO(fluid_synth_get_sfont_by_id, pFpi)
+GO(fluid_synth_key_pressure, iFpiii)
+GO(fluid_synth_noteoff, iFpii)
+GO(fluid_synth_noteon, iFpiii)
+GO(fluid_synth_pitch_bend, iFpii)
+GO(fluid_synth_program_change, iFpii)
+GO(fluid_synth_sfload, iFppi)
+GO(fluid_synth_system_reset, iFp)
+GO(new_fluid_audio_driver, pFpp)
+GO(new_fluid_settings, pFv)
+GO(new_fluid_synth, pFp)
