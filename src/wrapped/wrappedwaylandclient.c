@@ -623,6 +623,63 @@ static void* find_wl_data_device_listener_Fct(void* fct)
     printf_log(LOG_NONE, "Warning, no more slot for wayland-client wl_data_device_listener callback\n");
     return NULL;
 }
+// wl_data_source_listener ...
+typedef struct my_wl_data_source_listener_s {
+    uintptr_t   target; //vFppp
+    uintptr_t   send; //vFpppp
+    uintptr_t   cancelled; //vFpp
+    uintptr_t   dnd_drop_performed; //vFpp
+    uintptr_t   dnd_finished; //vFpp
+    uintptr_t   action; //vFppu
+} my_wl_data_source_listener_t;
+#define GO(A)   \
+static my_wl_data_source_listener_t* ref_wl_data_source_listener_##A = NULL;   \
+static void my_wl_data_source_listener_target_##A(void* a, void* b, void* c)    \
+{                                                                               \
+    RunFunctionFmt(ref_wl_data_source_listener_##A->target, "ppp", a, b, c);    \
+}                                                                               \
+static void my_wl_data_source_listener_send_##A(void* a, void* b, void* c, int d)  \
+{                                                                               \
+    RunFunctionFmt(ref_wl_data_source_listener_##A->send, "pppi", a, b, c, d);  \
+}                                                                               \
+static void my_wl_data_source_listener_cancelled_##A(void* a, void* b)          \
+{                                                                               \
+    RunFunctionFmt(ref_wl_data_source_listener_##A->cancelled, "pp", a, b);     \
+}                                                                               \
+static void my_wl_data_source_listener_dnd_drop_performed_##A(void* a, void* b) \
+{                                                                               \
+    RunFunctionFmt(ref_wl_data_source_listener_##A->dnd_drop_performed, "pp", a, b); \
+}                                                                               \
+static void my_wl_data_source_listener_dnd_finished_##A(void* a, void* b)       \
+{                                                                               \
+    RunFunctionFmt(ref_wl_data_source_listener_##A->dnd_finished, "pp", a, b);  \
+}                                                                               \
+static void my_wl_data_source_listener_action_##A(void* a, void* b, uint32_t c) \
+{                                                                               \
+    RunFunctionFmt(ref_wl_data_source_listener_##A->action, "ppu", a, b, c);    \
+}                                                                               \
+static my_wl_data_source_listener_t my_wl_data_source_listener_fct_##A = {     \
+    (uintptr_t)my_wl_data_source_listener_target_##A,                           \
+    (uintptr_t)my_wl_data_source_listener_send_##A,                             \
+    (uintptr_t)my_wl_data_source_listener_cancelled_##A,                        \
+    (uintptr_t)my_wl_data_source_listener_dnd_drop_performed_##A,               \
+    (uintptr_t)my_wl_data_source_listener_dnd_finished_##A,                     \
+    (uintptr_t)my_wl_data_source_listener_action_##A,                           \
+};
+SUPER()
+#undef GO
+static void* find_wl_data_source_listener_Fct(void* fct)
+{
+    if(!fct) return fct;
+    #define GO(A) if(ref_wl_data_source_listener_##A == fct) return &my_wl_data_source_listener_fct_##A;
+    SUPER()
+    #undef GO
+    #define GO(A) if(ref_wl_data_source_listener_##A == 0) {ref_wl_data_source_listener_##A = fct; return &my_wl_data_source_listener_fct_##A; }
+    SUPER()
+    #undef GO
+    printf_log(LOG_NONE, "Warning, no more slot for wayland-client wl_data_source_listener callback\n");
+    return NULL;
+}
 // wl_touch_listener ...
 typedef struct my_wl_touch_listener_s {
     uintptr_t   down; //vFppuupiii
@@ -1174,6 +1231,8 @@ EXPORT int my_wl_proxy_add_listener(x64emu_t* emu, void* proxy, void** l, void* 
         l = find_zxdg_output_v1_listener_Fct(l);
     } else if(!strcmp(proxy_name, "wl_data_device")) {
         l = find_wl_data_device_listener_Fct(l);
+    } else if(!strcmp(proxy_name, "wl_data_source")) {
+        l = find_wl_data_source_listener_Fct(l);
     } else if(!strcmp(proxy_name, "wl_touch")) {
         l = find_wl_touch_listener_Fct(l);
     } else if(!strcmp(proxy_name, "zwp_text_input_v3")) {
